@@ -8,15 +8,15 @@ As long as you open run the application, you will see a main menu, where you can
 #image
 
 If you click a "Top books" button you, will be offered two books to choose. 
-You should chooses one that you like the most, as long as you do so, the image in the opposite corner will change and now you have a different variats of choice. 
+You should chooses one that you like the most, as long as you do so, the image in the opposite corner will change and now you have a different variants of choice. 
 Continue choosing till the game does not reveal your numero uno priority.
 
 #image
 
 Q&A:
-1. Why we have choosesn this topic? 
- Well, this was just an idea that we came up with and it seemed to be hady for us. 
-2. What is te problem?
+1. Why we have choosen this topic? 
+ Well, this was just an idea that we came up with and it seemed to be handy for us. 
+2. What is the problem?
  Problem of choice.
 3. What is the solution that you purpose?
  That is a GUI Python3 game that enables you to choose and spend your leisure time.
