@@ -17,7 +17,7 @@ class TopBooks(App):
    def __init__(self, *args, **kwargs):
        App.__init__(self, *args, **kwargs)
 
-       self.papka = "/topbooks"
+       self.papka = "/top_books"
        p = os.getcwd()
        os.chdir(p + self.papka)
        p = os.getcwd()
@@ -40,14 +40,18 @@ class TopBooks(App):
        self.img_lbl.pack(side="right")
 
        #buttons
-       self.btn_left = tk.Button(self, text="Left", command=lambda: self.left())
+       self.btn_lft_img = ImageTk.PhotoImage(file=r"/home/marbelle/PycharmProjects/intro_project/Дизайн без названия.png")
+       self.btn_left = tk.Button(self, image=self.btn_lft_img, command=lambda: self.left())
+
        self.btn_left.place(x=0, y=454)
        #self.btn_left = tk.Button(self, text="Left", command=lambda: self.left())
        #self.btn_left.pack(side="left")
 
        #self.btn_right = tk.Button(self, text="Right", command=lambda: self.right())
        #self.btn_right.pack(side="right")
-       self.btn_right = tk.Button(self, text="Right", command=lambda: self.right())
+       self.btn_rgt_img = ImageTk.PhotoImage(file=r"/home/marbelle/PycharmProjects/intro_project/right.png")
+       self.btn_right = tk.Button(self, image=self.btn_rgt_img, command=lambda: self.right())
+
        self.btn_right.place(x=635, y=454)
 
        self.label = tk.Label(self, text="Pick only one!", font=LARGEFONT)
@@ -129,14 +133,16 @@ class TopMovies(App):
         # self.img_lbl.pack(side="right")
 
         # buttons
-        self.btn_left = tk.Button(self, text="Left", command=lambda: self.left())
+        self.btn_lft_img = ImageTk.PhotoImage(file=r"/home/marbelle/PycharmProjects/intro_project/Дизайн без названия.png")
+        self.btn_left = tk.Button(self, image=self.btn_lft_img, command=lambda: self.left())
         self.btn_left.place(x=0, y=454)
         # self.btn_left = tk.Button(self, text="Left", command=lambda: self.left())
         # self.btn_left.pack(side="left")
 
         # self.btn_right = tk.Button(self, text="Right", command=lambda: self.right())
         # self.btn_right.pack(side="right")
-        self.btn_right = tk.Button(self, text="Right", command=lambda: self.right())
+        self.btn_rgt_img = ImageTk.PhotoImage(file=r"/home/marbelle/PycharmProjects/intro_project/right.png")
+        self.btn_right = tk.Button(self, image=self.btn_rgt_img, command=lambda: self.right())
         self.btn_right.place(x=635, y=454)
 
         self.txt_lbl = tk.Label(self, text="Here is your movie #1!", font=LARGEFONT)
@@ -211,5 +217,5 @@ root.title("Would you rather?")
 main = MainView(root)
 main.pack(side="top", fill="both", expand=True)
 root.wm_geometry("700x700")
-root.resizable(height = None, width = None)
+root.resizable(False, False)
 root.mainloop()
