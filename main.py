@@ -4,12 +4,14 @@ import os
 
 LARGEFONT = ("Verdana", 35)
 
+
 class App(tk.Frame):
     def __init__(self, *args, **kwargs):
         tk.Frame.__init__(self, *args, **kwargs)
 
     def open_frame(self):
         self.lift()
+
 
 class TopBooks(App):
    def __init__(self, *args, **kwargs):
@@ -38,36 +40,18 @@ class TopBooks(App):
        self.img_lbl.pack(side="right")
 
        #buttons
+       self.btn_left = tk.Button(self, text="Left", command=lambda: self.left())
+       self.btn_left.place(x=0, y=454)
+       #self.btn_left = tk.Button(self, text="Left", command=lambda: self.left())
+       #self.btn_left.pack(side="left")
 
-       btn_left = tk.Button(self, text="Left", command=lambda: self.left())
-       btn_left.pack(side="left")
+       #self.btn_right = tk.Button(self, text="Right", command=lambda: self.right())
+       #self.btn_right.pack(side="right")
+       self.btn_right = tk.Button(self, text="Right", command=lambda: self.right())
+       self.btn_right.place(x=635, y=454)
 
-       btn_right = tk.Button(self, text="Right", command=lambda: self.right())
-       btn_right.pack(side="right")
+       self.txt_lbl=tk.Label(self, text="Here is your book #1!", font=LARGEFONT)
 
-       label = tk.Label(self, text="Pick only one!", font=LARGEFONT)
-       label.pack(side="top", fill="both", expand=True)
-
-   def left(self):
-       if (self.r == (len(self.spisok) - 1) or self.l == (len(self.spisok) - 1)):
-           self.img_lbl.after(1000, self.img_lbl.destroy())
-           self.btn_left.destroy()
-           self.btn_right.destroy()
-           self.bks_lbl.destroy()
-           self.im_lbl.pack(side='top')
-
-       if self.r < self.l:
-           self.r = self.l + 1
-           self.img = Image.open(self.spisok[self.r])
-           self.img = ImageTk.PhotoImage(self.img)
-           self.img_lbl.image=self.img
-           self.img_lbl.config(image=self.img)
-       else:
-           self.r += 1
-           self.img = Image.open(self.spisok[self.r])
-           self.img = ImageTk.PhotoImage(self.img)
-           self.img_lbl.image=self.img
-           self.img_lbl.config(image=self.img)
 
    def right(self):
        if (self.r == (len(self.spisok) - 1) or self.l == (len(self.spisok) - 1)):
@@ -75,6 +59,7 @@ class TopBooks(App):
            self.btn_left.destroy()
            self.btn_right.destroy()
            self.img_lbl.pack(side='top')
+           self.txt_lbl.pack(side="bottom")
 
        if self.l < self.r:
            self.l = self.r + 1
@@ -86,8 +71,31 @@ class TopBooks(App):
            self.l += 1
            self.im = Image.open(self.spisok[self.l])
            self.im = ImageTk.PhotoImage(self.im)
-           self.im_lbl=self.im
+           self.im_lbl.image=self.im
            self.im_lbl.config(image=self.im)
+   def left(self):
+       if (self.r == (len(self.spisok) - 1) or self.l == (len(self.spisok) - 1)):
+           print("zafiraloh")
+           self.img_lbl.after(1000, self.img_lbl.destroy())
+           self.btn_left.destroy()
+           self.btn_right.destroy()
+           self.txt_lbl.pack(side="bottom")
+
+           #self.bks_lbl.destroy()
+           self.im_lbl.pack(side='top')
+
+       if self.r < self.l:
+           self.r = self.l + 1
+           self.img = Image.open(self.spisok[self.r])
+           self.img = ImageTk.PhotoImage(self.img)
+           self.img_lbl.image = self.img
+           self.img_lbl.config(image=self.img)
+       else:
+           self.r += 1
+           self.img = Image.open(self.spisok[self.r])
+           self.img = ImageTk.PhotoImage(self.img)
+           self.img_lbl.image=self.img
+           self.img_lbl.config(image=self.img)
 
 
 class MainView(tk.Frame):
@@ -105,10 +113,11 @@ class MainView(tk.Frame):
         p2.place(in_=container, x=0, y=0, relwidth=1, relheight=1)
 
         b1 = tk.Button(btn_frame, text="menu", command=p1.open_frame)
-        b2 = tk.Button(btn_frame, text="top books", command=p2.open_frame)
+        b2 = tk.Button(btn_frame, text="Top book", command=p2.open_frame)
 
         b1.pack(side="top")
         b2.pack(side="top")
+
         p1.open_frame()
 
 root = tk.Tk()
@@ -116,11 +125,3 @@ main = MainView(root)
 main.pack(side="top", fill="both", expand=True)
 root.wm_geometry("700x700")
 root.mainloop()
-
-
-
-
-
-
-
-
